@@ -1,0 +1,33 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Source Code
+      uses: actions/checkout@v3
+
+    - name: Build User Service Image
+      run: |
+        cd services/user-service
+        docker build -t user-service:latest .
+
+    - name: Build Restaurant Service Image
+      run: |
+        cd services/restaurant-service
+        docker build -t restaurant-service:latest .
+
+    - name: Build Order Service Image
+      run: |
+        cd services/order-service
+        docker build -t order-service:latest .
+
+    - name: Run Build Verification
+      run: docker images
