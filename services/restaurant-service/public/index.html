@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Catalog</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #1f1c2c, #928dab);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --text-main: #ffffff;
+            --accent: #ff7e5f;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            padding: 3rem;
+            border-radius: 24px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            transition: transform 0.3s ease;
+        }
+        .container:hover {
+            transform: translateY(-5px);
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: -webkit-linear-gradient(#fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        p {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+        .btn {
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(255, 126, 95, 0.4);
+        }
+        .btn:hover {
+            background: #fff;
+            color: #ff7e5f;
+            box-shadow: 0 0 20px rgba(255, 126, 95, 0.7);
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+            text-align: left;
+        }
+        li {
+            background: rgba(0,0,0,0.2);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            border: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Restaurants</h1>
+        <p>Discover top rated places around you.</p>
+        <ul id="restaurantList">
+            <li><span>🍕 Pizza Palace</span> <span>⭐ 4.8</span></li>
+            <li><span>🍔 Burger Hub</span> <span>⭐ 4.5</span></li>
+            <li><span>🍣 Sushi Zen</span> <span>⭐ 4.9</span></li>
+        </ul>
+        <button class="btn" id="exploreBtn" onclick="loadMore()">Explore All</button>
+        
+        <script>
+            function loadMore() {
+                const list = document.getElementById('restaurantList');
+                const morePlaces = [
+                    '<li><span>🌮 Taco Town</span> <span>⭐ 4.6</span></li>',
+                    '<li><span>🍜 Ramen House</span> <span>⭐ 4.7</span></li>',
+                    '<li><span>🥗 Vegan Vibes</span> <span>⭐ 4.8</span></li>'
+                ];
+                morePlaces.forEach(place => list.insertAdjacentHTML('beforeend', place));
+                
+                const btn = document.getElementById('exploreBtn');
+                btn.innerText = "That's All For Now!";
+                btn.disabled = true;
+                btn.style.opacity = '0.5';
+                btn.style.cursor = 'not-allowed';
+            }
+        </script>
+    </div>
+</body>
+</html>

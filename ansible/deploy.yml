@@ -1,0 +1,19 @@
+---
+- name: Deploy Microservices
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Stop existing containers
+      shell: docker stop user-app restaurant-app order-app || true
+
+    - name: Remove existing containers
+      shell: docker rm user-app restaurant-app order-app || true
+
+    - name: Run user-service container
+      command: docker run -d -p 3001:3001 --name user-app user-service
+
+    - name: Run restaurant-service container
+      command: docker run -d -p 3002:3002 --name restaurant-app restaurant-service
+
+    - name: Run order-service container
+      command: docker run -d -p 3003:3003 --name order-app order-service
